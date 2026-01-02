@@ -1,15 +1,14 @@
 services:
   devcontainer:
-    image: mcr.microsoft.com/devcontainers/base:ubuntu 
+    build:
+      context: .
+      dockerfile: Dockerfile.devcontainer
     container_name: devcontainer
     volumes:
       - ../../:/workspaces:cached
     networks:
       - app-network
     command: sleep infinity
-    depends_on:
-      - postgres
-      - pgadmin
 
   postgres:
     image: postgres:16-alpine

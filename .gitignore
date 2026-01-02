@@ -109,3 +109,4 @@ Thumbs.db
 
 # Exclude launchSettings if you don’t want to commit local environment settings
 **/Properties/launchSettings.json
+java/spring_with_security_api/.env
