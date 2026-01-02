@@ -48,8 +48,9 @@ dependencies {
     //ssrf
     implementation "com.squareup.okhttp3:okhttp:4.12.0"
 
-
-
+    // Infisical SDK
+    implementation group: 'com.infisical', name: 'sdk', version: '{latest.release}'
+    
 
     
     // Testing
