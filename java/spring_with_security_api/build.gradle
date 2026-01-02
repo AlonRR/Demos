@@ -60,3 +60,27 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// Ensure the java.smartcardio module is available when running via Gradle
+// and load .env into the `bootRun` environment for local runs
+bootRun {
+    jvmArgs = ['--add-modules', 'java.smartcardio']
+
+    def envFile = file('.env')
+    if (envFile.exists()) {
+        def envMap = [:]
+        envFile.eachLine { line ->
+            line = line.trim()
+            if (!line || line.startsWith('#')) { return }
+            def idx = line.indexOf('=')
+            if (idx > 0) {
+                def key = line.substring(0, idx).trim()
+                def value = line.substring(idx + 1).trim()
+                envMap[key] = value
+            }
+        }
+        if (!envMap.isEmpty()) {
+            environment envMap
+        }
+    }
+}
